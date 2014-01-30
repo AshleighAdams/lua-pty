@@ -48,4 +48,10 @@ deb: pty.lua core.so
 	dpkg-buildpackage -b -rfakeroot; \
 	cat debian/control | sed "s/^Version: \(.*\)/Version: auto/g" > debian/control.tmp && mv debian/control.tmp debian/control; \
 	mkdir -p ./build/ && cp ../lua-pty_* ./build/
+	$(RM) build/*.changes
 	@echo ".deb is located at build/"
+
+rpm: deb
+	fakeroot alien --keep-version --to-rpm build/*.deb && mv *.rpm build/
+
+packages: deb rpm

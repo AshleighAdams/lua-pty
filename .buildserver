@@ -2,7 +2,8 @@
 set -e #make bash halt on error
 set -x #make bash echo the commands
 
-make deb
+# build DEB and RPM packages
+make packages
 
 mkdir -p tmp
 mkdir -p tmp/pty
