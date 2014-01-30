@@ -7,8 +7,10 @@ local first = true
 
 while line ~= nil do
 	if first then first = false else print() end
-	local hash = line:match("commit ([A-z0-9]+)"):sub(1,7)
-	print(string.format("lua-pty (1.0git%s) unstable; urgency=low", hash))
+	local hash = line:match("commit ([A-z0-9]+)")
+	local version = io.popen("git describe --tags --always " .. hash):read("*a")
+	version = version:sub(1, #version - 1)
+	print(string.format("lua-pty (%s) unstable; urgency=low", version))
 	
 	local author = inp:read("*l"):match("Author:%s+(.+)")
 	local date = inp:read("*l"):match("Date:%s+(.+)")

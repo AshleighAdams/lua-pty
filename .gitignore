@@ -1,3 +1,9 @@
 *.o
 *.so
 *~
+debian/changelog
+debian/lua-pty/
+debian/debhelper.log
+debian/lua-pty.debhelper.log
+debian/lua-pty.substvars
+debian/files
