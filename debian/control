@@ -4,14 +4,13 @@ Priority: optional
 Maintainer: Kobra <self@kateadams.eu>
 Build-Depends: debhelper (>= 8.0.0), liblua5.2-dev
 Standards-Version: 3.9.4
-Homepage: <insert the upstream URL, if relevant>
+Homepage: https://github.com/KateAdams/lua-pty
 Vcs-Git: https://github.com/KateAdams/lua-pty.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/lua-pty.git;a=summary
 
 Package: lua-pty
-Version: 1.0
+Version: v1.0-2-g5dcd659
 Architecture: any
 Depends: lua5.2
 Description: Lua support for pseudo-terminals.
  Lua bindings to functions necessary for pseudo-terminals in Linux.
-
