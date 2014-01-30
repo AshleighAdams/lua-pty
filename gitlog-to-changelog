@@ -13,7 +13,8 @@ local function update_version()
 		
 		if line:match("^Version: .-$") then
 			line = string.format("Version: %s", version)
-			line = line:gsub("%-g", "git"):gsub("%-", ".")
+			line = line:gsub("%-g", "+git")
+			print(line)
 		end
 		
 		table.insert(control, line)
@@ -21,14 +22,14 @@ local function update_version()
 	
 	io.open("debian/control", "w"):write(table.concat(control, "\n"))
 end
-
+update_version()
 
 while line ~= nil do
 	local hash = line:match("commit ([A-z0-9]+)")
-	local version = io.popen("git describe --tags --always " .. hash):read("*l")
+	local version = io.popen("git describe --tags --always " .. hash):read("*l"):gsub("%-g", "+git")
 	version = version:sub(2)
 	
-	if first then first = false update_version() else print() end
+	if first then first = false else print() end
 	print(string.format("lua-pty (%s) unstable; urgency=low", version))
 	
 	local author = inp:read("*l"):match("Author:%s+(.+)")
