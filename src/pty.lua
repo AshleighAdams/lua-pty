@@ -6,7 +6,7 @@ local tty = {}
 function pty.new(cmd, args, cols, rows)
 	cmd = cmd or "/bin/bash"
 	args = args or {}
-	local ret = pty.core.forkpty(cmd, args, nil, {}) -- exec, args, cwd, env
+	local ret = pty.core.forkpty(cmd, args, nil, pty.core.getenvs()) -- exec, args, cwd, env
 	
 	if cols ~= nil and rows ~= nil then
 		assert(pty.core.setsize(ret.fd, cols, rows))

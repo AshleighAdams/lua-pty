@@ -274,6 +274,22 @@ int pty_nocanon(lua_State* L)
 	return 1;
 }
 
+extern char **environ;
+int pty_getenvs(lua_State* L)
+{
+	lua_newtable(L);
+
+	int i = 1;
+	for (char **env = environ; *env; ++env, i++)
+	{
+		lua_pushnumber(L, i);
+		lua_pushstring(L, *env);
+		lua_settable(L, -3);
+	}
+	
+	return 1;
+}
+
 static const luaL_Reg R[] =
 {
 	{"forkpty",       pty_forkpty       },
@@ -283,6 +299,7 @@ static const luaL_Reg R[] =
 	{"openfd",        pty_openfd        },
 	{"pendingbytes",  pty_bufferedbytes },
 	{"nocanon",       pty_nocanon       },
+	{"getenvs",       pty_getenvs       },
 	{ NULL, NULL }
 };
 
