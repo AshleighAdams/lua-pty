@@ -13,6 +13,7 @@ local function update_version()
 		
 		if line:match("^Version: .-$") then
 			line = string.format("Version: %s", version)
+			line = line:gsub("%-g", "git"):gsub("%-", ".")
 		end
 		
 		table.insert(control, line)
@@ -20,6 +21,7 @@ local function update_version()
 	
 	io.open("debian/control", "w"):write(table.concat(control, "\n"))
 end
+
 
 while line ~= nil do
 	local hash = line:match("commit ([A-z0-9]+)")

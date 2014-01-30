@@ -9,7 +9,7 @@ Vcs-Git: https://github.com/KateAdams/lua-pty.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/lua-pty.git;a=summary
 
 Package: lua-pty
-Version: v1.0-2-g5dcd659
+Version: auto
 Architecture: any
 Depends: lua5.2
 Description: Lua support for pseudo-terminals.

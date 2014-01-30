@@ -45,6 +45,5 @@ install: install-so install-lua
 deb: pty.lua core.so
 	@echo generating deb
 	./gitlog-to-changelog > debian/changelog
-	dpkg-buildpackage -rfakeroot
-	
-
+	dpkg-buildpackage -b -rfakeroot; \
+	cat debian/control | sed "s/^Version: \(.*\)/Version: auto/g" > debian/control.tmp && mv debian/control.tmp debian/control
