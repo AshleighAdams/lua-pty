@@ -7,3 +7,4 @@ debian/debhelper.log
 debian/lua-pty.debhelper.log
 debian/lua-pty.substvars
 debian/files
+build/

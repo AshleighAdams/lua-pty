@@ -30,7 +30,7 @@ core.so: core.o
 	
 clean:
 	$(RM) core.o core.so ./*~ ./**/*~
-	$(RM) -r debian/lua-pty/
+	$(RM) -r debian/lua-pty/ build/
 	$(RM) debian/debhelper.log debian/lua-pty.debhelper.log debian/lua-pty.substvars debian/files
 
 
@@ -46,4 +46,6 @@ deb: pty.lua core.so
 	@echo generating deb
 	./gitlog-to-changelog > debian/changelog
 	dpkg-buildpackage -b -rfakeroot; \
-	cat debian/control | sed "s/^Version: \(.*\)/Version: auto/g" > debian/control.tmp && mv debian/control.tmp debian/control
+	cat debian/control | sed "s/^Version: \(.*\)/Version: auto/g" > debian/control.tmp && mv debian/control.tmp debian/control; \
+	mkdir -p ./build/ && cp ../lua-pty_* ./build/
+	@echo ".deb is located at build/"
