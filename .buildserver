@@ -3,5 +3,13 @@ set -e #make bash halt on error
 set -x #make bash echo the commands
 
 make deb
-zip build.zip build/*
+
+mkdir -p tmp
+mkdir -p tmp/pty
+cp ./build/* tmp/
+cp ./core.so tmp/pty/
+cp ./src/pty.lua tmp/
+cd ./tmp && zip build.zip ./* ./**/* && cd -
+cp ./tmp/build.zip ./
+rm -r ./tmp
 make clean
