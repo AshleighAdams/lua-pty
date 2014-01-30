@@ -47,7 +47,7 @@ deb: pty.lua core.so
 	./gitlog-to-changelog > debian/changelog
 	dpkg-buildpackage -b -rfakeroot; \
 	cat debian/control | sed "s/^Version: \(.*\)/Version: auto/g" > debian/control.tmp && mv debian/control.tmp debian/control; \
-	mkdir -p ./build/ && cp ../lua-pty_* ./build/
+	mkdir -p ./build/ && mv ../lua-pty_* ./build/
 	$(RM) build/*.changes
 	@echo ".deb is located at build/"
 
