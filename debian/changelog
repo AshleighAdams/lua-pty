@@ -1,0 +1,17 @@
+lua-pty (1.0gita470d20) unstable; urgency=low
+
+  * Added example (redirect stderr to a different tty; eg: ./example.lua 2> /dev/pts/N
+
+ -- Kobra <frozenfish51@gmail.com>  Wed, 29 Jan 2014 22:34:43 +0000
+
+lua-pty (1.0gitc984331) unstable; urgency=low
+
+  * "First"
+
+ -- Kobra <frozenfish51@gmail.com>  Wed, 29 Jan 2014 22:33:01 +0000
+
+lua-pty (1.0git804ea42) unstable; urgency=low
+
+  * Initial commit
+
+ -- Kate Adams <c0bra@xiatek.org>  Wed, 29 Jan 2014 13:43:49 -0800

@@ -1,0 +1,48 @@
+#!/usr/bin/env lua
+
+local inp = io.popen("git log")
+local line = inp:read("*l")
+
+local first = true
+
+while line ~= nil do
+	if first then first = false else print() end
+	local hash = line:match("commit ([A-z0-9]+)"):sub(1,7)
+	print(string.format("lua-pty (1.0git%s) unstable; urgency=low", hash))
+	
+	local author = inp:read("*l"):match("Author:%s+(.+)")
+	local date = inp:read("*l"):match("Date:%s+(.+)")
+	local msgs = {}
+	
+	-- fix the date
+	local day, month, date, time, year, offset = date:match("(.+)%s+(.+)%s+(.+)%s+(.+)%s+(.+)%s+(.+)")
+	date = string.format("%s, %s %s %s %s %s", day, date, month, year, time, offset)
+	-- /fix
+	
+	assert(inp:read("*l") == "")
+	while true do
+		line = inp:read("*l")
+		if line == nil or line == "" then break end
+		table.insert(msgs, line:match("%s+(.+)"))
+	end
+	
+	print()
+	for k,v in pairs(msgs) do
+		print(string.format("  * %s", v))
+	end
+	print()
+	
+	print(string.format(" -- %s  %s", author, date))
+	line = inp:read("*l")
+end
+
+
+
+--[[
+lua-pty (1.0git) unstable; urgency=low
+
+  * change details
+  * even more change details
+
+ -- Kate Adams <self@kateadams.eu>  Thu, 30 Jan 2014 01:27:00 +0000
+]]
