@@ -1,7 +1,7 @@
 Source: lua-pty
 Section: lib
 Priority: optional
-Maintainer: Kobra <self@kateadams.eu>
+Maintainer: Kate Adams <self@kateadams.eu>
 Build-Depends: debhelper (>= 8.0.0), liblua5.2-dev
 Standards-Version: 3.9.4
 Homepage: https://github.com/KateAdams/lua-pty
