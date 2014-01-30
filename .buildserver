@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e #make bash halt on error
+set -x #make bash echo the commands
+
+make deb
+zip build.zip build/*
+make clean
