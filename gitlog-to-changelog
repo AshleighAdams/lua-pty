@@ -14,7 +14,6 @@ local function update_version()
 		if line:match("^Version: .-$") then
 			line = string.format("Version: %s", version)
 			line = line:gsub("%-g", "+git")
-			print(line)
 		end
 		
 		table.insert(control, line)
